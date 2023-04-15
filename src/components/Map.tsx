@@ -16,6 +16,10 @@ const Map = () => {
     iconUrl: "https://unpkg.com/ionicons@5.5.2/dist/ionicons/svg/location.svg",
     iconSize: [28, 28], //icon size
   });
+  const iconPlus = new Icon({
+    iconUrl: "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js",
+    iconSize: [30, 30],
+  });
   const cornerCoordinates = [
     //[40.540055, -8.909675] top-left
     [40.540055, -7.730746], // top-right
