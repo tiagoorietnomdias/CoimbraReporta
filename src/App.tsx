@@ -12,7 +12,6 @@ export default function App() {
       {alertVisible && (
         <Alert onClose={() => setAlertvisibility(false)}>ALERTA PEPEPEP</Alert>
       )}
-      <Button onClick={() => setAlertvisibility(true)}>My button</Button>
     </div>
   );
 }
