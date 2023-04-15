@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
-import "../Styles/map.css";
+import { useState, useEffect } from 'react';
 import L, { Icon } from "leaflet";
+import "../Styles/styles.css";
 import { MapContainer, Marker, TileLayer, GeoJSON } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
@@ -28,11 +28,27 @@ const Map = () => {
     [cornerCoordinates[1][0], cornerCoordinates[1][1]],
   ]);
 
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleInfo = () => {
+    // Handle info action here
+  };
+
+  const handleComplaints = () => {
+    // Handle complaints verification action here
+  };
+
   const handleLogout = () => {
     // Implement your logout logic here
   };
+
   return (
     <MapContainer
+      className="map"
       center={[40.2115, -8.4292]}
       zoom={15}
       maxBounds={bounds}
@@ -48,7 +64,20 @@ const Map = () => {
           icon={customIcon}
         ></Marker>
       ))}
-      <button className="btn-add">Add marker</button>
+       <div className="user-button" onClick={toggleDropdown}>
+        U
+      </div>
+      <div className={`user-dropdown ${dropdownVisible ? 'visible' : ''}`}>
+        <div className="user-dropdown-item" onClick={handleInfo}>
+          Informações
+        </div>
+        <div className="user-dropdown-item" onClick={handleComplaints}>
+          Verificação de queixas
+        </div>
+        <div className="user-dropdown-item" onClick={handleLogout}>
+          Logout
+        </div>
+      </div>
     </MapContainer>
   );
 };

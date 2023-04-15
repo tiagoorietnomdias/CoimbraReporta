@@ -7,7 +7,6 @@ export default function App() {
   const [alertVisible, setAlertvisibility] = useState(false);
   return (
     <div>
-      <Navbar></Navbar>
       <Map />
       {alertVisible && (
         <Alert onClose={() => setAlertvisibility(false)}>ALERTA PEPEPEP</Alert>
