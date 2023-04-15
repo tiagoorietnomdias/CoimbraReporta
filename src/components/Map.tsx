@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import L, { Icon } from "leaflet";
 import "../Styles/styles.css";
 import { MapContainer, Marker, TileLayer, GeoJSON } from "react-leaflet";
-
 import "leaflet/dist/leaflet.css";
+
 const Map = () => {
   const markers = [
     {
@@ -16,10 +16,7 @@ const Map = () => {
     iconUrl: "https://unpkg.com/ionicons@5.5.2/dist/ionicons/svg/location.svg",
     iconSize: [28, 28], //icon size
   });
-  const iconPlus = new Icon({
-    iconUrl: "https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js",
-    iconSize: [30, 30],
-  });
+
   const cornerCoordinates = [
     //[40.540055, -8.909675] top-left
     [40.540055, -7.730746], // top-right
@@ -33,6 +30,7 @@ const Map = () => {
   ]);
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [isReportModalOpen, setReportModalOpen] = useState<boolean>(false);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -48,6 +46,14 @@ const Map = () => {
 
   const handleLogout = () => {
     // Implement your logout logic here
+  };
+
+  const handleQueixa = () => {
+    handleReportModal();
+  };
+
+  const handleReportModal = () => {
+    setReportModalOpen(!isReportModalOpen);
   };
 
   return (
@@ -82,6 +88,31 @@ const Map = () => {
           Logout
         </div>
       </div>
+        <div className="btn-add" onClick={handleQueixa}>
+          Reporte
+        </div>
+        {isReportModalOpen && (
+        <div className="modal" onClick={handleReportModal}>
+          <div
+            className="modal-content"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
+            <div className="modal-close" onClick={handleReportModal}>
+              &times;
+            </div>
+            <h2>Título</h2>
+            <input type="text" placeholder="Escreva o título aqui" />
+            <br />
+            <h2>Descrição (opcional)</h2>
+            <textarea rows={4} placeholder="Escreva a descrição aqui"></textarea>
+            <br />
+            <h2>Fotografia</h2>
+            <input type="file" accept="image/*" />
+          </div>
+        </div>
+      )}
     </MapContainer>
   );
 };
