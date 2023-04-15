@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./style.css";
+import "./Styles/login.css"
 import { handlePopupEvents } from "./script.js";
 
 const API_URL = "http://localhost:3001";

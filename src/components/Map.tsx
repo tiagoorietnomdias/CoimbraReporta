@@ -1,7 +1,13 @@
 import React from "react";
+<<<<<<< Updated upstream
 import { useState, useEffect } from 'react';
 import L, { Icon } from "leaflet";
 import "../Styles/styles.css";
+=======
+import { useState, useEffect } from "react";
+import L, { Icon } from "leaflet";
+import "../Styles/map.css";
+>>>>>>> Stashed changes
 import { MapContainer, Marker, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -30,7 +36,10 @@ const Map = () => {
   ]);
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
+<<<<<<< Updated upstream
   const [isReportModalOpen, setReportModalOpen] = useState<boolean>(false);
+=======
+>>>>>>> Stashed changes
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -48,6 +57,7 @@ const Map = () => {
     // Implement your logout logic here
   };
 
+<<<<<<< Updated upstream
   const handleQueixa = () => {
     handleReportModal();
   };
@@ -56,6 +66,8 @@ const Map = () => {
     setReportModalOpen(!isReportModalOpen);
   };
 
+=======
+>>>>>>> Stashed changes
   return (
     <MapContainer
       className="map"
@@ -74,10 +86,17 @@ const Map = () => {
           icon={customIcon}
         ></Marker>
       ))}
+<<<<<<< Updated upstream
        <div className="user-button" onClick={toggleDropdown}>
         U
       </div>
       <div className={`user-dropdown ${dropdownVisible ? 'visible' : ''}`}>
+=======
+      <div className="user-button" onClick={toggleDropdown}>
+        U
+      </div>
+      <div className={`user-dropdown ${dropdownVisible ? "visible" : ""}`}>
+>>>>>>> Stashed changes
         <div className="user-dropdown-item" onClick={handleInfo}>
           Informações
         </div>
@@ -88,6 +107,7 @@ const Map = () => {
           Logout
         </div>
       </div>
+<<<<<<< Updated upstream
         <div className="btn-add" onClick={handleQueixa}>
           Reporte
         </div>
@@ -113,6 +133,8 @@ const Map = () => {
           </div>
         </div>
       )}
+=======
+>>>>>>> Stashed changes
     </MapContainer>
   );
 };
