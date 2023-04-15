@@ -48,7 +48,7 @@ const Map = () => {
           icon={customIcon}
         ></Marker>
       ))}
-      <button className="btn-add"></button>
+      <button className="btn-add">Add marker</button>
     </MapContainer>
   );
 };
