@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "./Styles/login.css"
-import { handlePopupEvents } from "./script.js";
+import "./Styles/login.css";
+import { handlePopupEvents } from "./Styles/script.js";
+const bcrypt = require('bcrypt');
+const db = require('./db'); // replace './db' with the path to your MongoDB connection code
+
 
 const API_URL = "http://localhost:3001";
-
+//a implementar com mongodb amanha
 const handleRegister = async (event) => {
   event.preventDefault();
   const citizen_card_number = event.target[0].value;
@@ -28,30 +31,29 @@ const handleRegister = async (event) => {
     console.error(err);
   }
 };
-
+//a implementar com mongodb amanha
 const handleLogin = async (event) => {
   event.preventDefault();
   const email = event.target[0].value;
   const password = event.target[1].value;
 
   try {
-    const response = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    if (data.id) {
-      console.log(`User ${data.id} logged in`);
+    const user = await db.collection("users").findOne({ email: email });
+    if (!user) {
+      console.error("User not found");
+      return;
+    }
+    const match = await bcrypt.compare(password, user.password);
+    if (match) {
+      console.log(`User ${user._id} logged in`);
     } else {
-      console.error("Error logging in");
+      console.error("Invalid password");
     }
   } catch (err) {
     console.error(err);
   }
 };
+
 
 const CoimbraReporta = () => {
   useEffect(() => {

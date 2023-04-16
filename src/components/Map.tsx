@@ -1,13 +1,7 @@
 import React from "react";
-<<<<<<< Updated upstream
-import { useState, useEffect } from 'react';
-import L, { Icon } from "leaflet";
-import "../Styles/styles.css";
-=======
 import { useState, useEffect } from "react";
 import L, { Icon } from "leaflet";
-import "../Styles/map.css";
->>>>>>> Stashed changes
+import "../Styles/main.css";
 import { MapContainer, Marker, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -36,10 +30,7 @@ const Map = () => {
   ]);
 
   const [dropdownVisible, setDropdownVisible] = useState(false);
-<<<<<<< Updated upstream
   const [isReportModalOpen, setReportModalOpen] = useState<boolean>(false);
-=======
->>>>>>> Stashed changes
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -57,7 +48,6 @@ const Map = () => {
     // Implement your logout logic here
   };
 
-<<<<<<< Updated upstream
   const handleQueixa = () => {
     handleReportModal();
   };
@@ -66,8 +56,6 @@ const Map = () => {
     setReportModalOpen(!isReportModalOpen);
   };
 
-=======
->>>>>>> Stashed changes
   return (
     <MapContainer
       className="map"
@@ -86,17 +74,10 @@ const Map = () => {
           icon={customIcon}
         ></Marker>
       ))}
-<<<<<<< Updated upstream
-       <div className="user-button" onClick={toggleDropdown}>
-        U
-      </div>
-      <div className={`user-dropdown ${dropdownVisible ? 'visible' : ''}`}>
-=======
       <div className="user-button" onClick={toggleDropdown}>
         U
       </div>
       <div className={`user-dropdown ${dropdownVisible ? "visible" : ""}`}>
->>>>>>> Stashed changes
         <div className="user-dropdown-item" onClick={handleInfo}>
           Informações
         </div>
@@ -107,11 +88,10 @@ const Map = () => {
           Logout
         </div>
       </div>
-<<<<<<< Updated upstream
-        <div className="btn-add" onClick={handleQueixa}>
-          Reporte
-        </div>
-        {isReportModalOpen && (
+      <div className="btn-add" onClick={handleQueixa}>
+        Reporte
+      </div>
+      {isReportModalOpen && (
         <div className="modal" onClick={handleReportModal}>
           <div
             className="modal-content"
@@ -126,15 +106,18 @@ const Map = () => {
             <input type="text" placeholder="Escreva o título aqui" />
             <br />
             <h2>Descrição (opcional)</h2>
-            <textarea rows={4} placeholder="Escreva a descrição aqui"></textarea>
+            <textarea
+              rows={4}
+              placeholder="Escreva a descrição aqui"
+            ></textarea>
             <br />
             <h2>Fotografia</h2>
             <input type="file" accept="image/*" />
+            <br />
+            <button onClick={() => {}}>Enviar</button>
           </div>
         </div>
       )}
-=======
->>>>>>> Stashed changes
     </MapContainer>
   );
 };
