@@ -30,31 +30,32 @@ const handleRegister = async (event) => {
   }
 };
 
-const handleLogin = async (event) => {
-  event.preventDefault();
-  const email = event.target[0].value;
-  const password = event.target[1].value;
 
-  try {
-    const response = await fetch(`${API_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await response.json();
-    if (data.id) {
-      console.log(`User ${data.id} logged in`);
-    } else {
-      console.error("Error logging in");
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
+const CoimbraReporta = ({ onLoginSuccess }) =>  {
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    const email = event.target[0].value;
+    const password = event.target[1].value;
+    onLoginSuccess();
 
-const CoimbraReporta = () => {
+    /*try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (data.id) {
+        console.log(`User ${data.id} logged in`);
+      } else {
+        console.error("Error logging in");
+      }
+    } catch (err) {
+      console.error(err);
+    }*/
+  };
   useEffect(() => {
     handlePopupEvents();
 
