@@ -41,7 +41,7 @@ header {
     justify-content: flex-end;
     width: 100%;
     align-items: center;
-  }
+}
 
 .navigation a {
     position: relative;
@@ -269,6 +269,27 @@ header {
     position: absolute;
     top: -60px;
     left: -100px;
-    width: 400px; 
+    width: 400px;
     height: auto;
-  }
+}
+
+textarea {
+    resize: none;
+}
+
+textarea[placeholder="Escreva a descrição aqui"],
+input[type=text] {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+input[type=text] {
+    height: 3em;
+}
+
+textarea[placeholder="Escreva a descrição aqui"],
+input[type=text] {
+    font-size: 15px;
+}
