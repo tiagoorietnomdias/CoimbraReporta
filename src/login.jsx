@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import "./Styles/login.css";
-import { handlePopupEvents } from "./Styles/script.js";
-const bcrypt = require('bcrypt');
-const db = require('./db'); // replace './db' with the path to your MongoDB connection code
-
+import React, { useEffect, useState } from 'react';
+import './Styles/login.css';
+import { handlePopupEvents } from './script.js';
+import logo from './Styles/LOGO2.png';
 
 const API_URL = "http://localhost:3001";
-//a implementar com mongodb amanha
+
 const handleRegister = async (event) => {
   event.preventDefault();
   const citizen_card_number = event.target[0].value;
@@ -31,52 +29,53 @@ const handleRegister = async (event) => {
     console.error(err);
   }
 };
-//a implementar com mongodb amanha
+
 const handleLogin = async (event) => {
   event.preventDefault();
   const email = event.target[0].value;
   const password = event.target[1].value;
 
   try {
-    const user = await db.collection("users").findOne({ email: email });
-    if (!user) {
-      console.error("User not found");
-      return;
-    }
-    const match = await bcrypt.compare(password, user.password);
-    if (match) {
-      console.log(`User ${user._id} logged in`);
+    const response = await fetch(`${API_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    if (data.id) {
+      console.log(`User ${data.id} logged in`);
     } else {
-      console.error("Invalid password");
+      console.error("Error logging in");
     }
   } catch (err) {
     console.error(err);
   }
 };
 
-
 const CoimbraReporta = () => {
   useEffect(() => {
     handlePopupEvents();
 
     const createScript = (src, isModule) => {
-      const script = document.createElement("script");
+      const script = document.createElement('script');
       script.src = src;
       if (isModule) {
-        script.type = "module";
+        script.type = 'module';
       } else {
-        script.setAttribute("nomodule", "");
+        script.setAttribute('nomodule', '');
       }
       document.body.appendChild(script);
       return script;
     };
 
     const ionIconsScriptModule = createScript(
-      "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js",
+      'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js',
       true
     );
     const ionIconsScriptNomodule = createScript(
-      "https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js",
+      'https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js',
       false
     );
 
@@ -84,12 +83,12 @@ const CoimbraReporta = () => {
       document.body.removeChild(ionIconsScriptModule);
       document.body.removeChild(ionIconsScriptNomodule);
     };
-  }, []);
+}, []);
 
   return (
     <>
       <header>
-        <h2 className="logo">Logo</h2>
+      <img className="logo" src={logo} alt="Logo" />
         <nav className="navigation">
           <a href="#">Home</a>
           <a href="#">Sobre Nós</a>
@@ -105,37 +104,22 @@ const CoimbraReporta = () => {
           <h2>Iniciar Sessão</h2>
           <form action="#" onSubmit={handleLogin}>
             <div className="input-box">
-              <span className="icon">
-                <ion-icon name="mail"></ion-icon>
-              </span>
+              <span className="icon"><ion-icon name="mail"></ion-icon></span>
               <input type="email" required />
               <label>Email</label>
             </div>
             <div className="input-box">
-              <span className="icon">
-                <ion-icon name="lock-closed"></ion-icon>
-              </span>
+              <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
               <input type="password" required />
               <label>Password</label>
             </div>
             <div className="remember-forgot">
-              <label>
-                <input type="checkbox" />
-                Lembra-me
-              </label>
+              <label><input type="checkbox" />Lembra-me</label>
               <a href="#">Esqueci-me da password!</a>
             </div>
-            <button type="submit" class="btn">
-              Login
-            </button>
+            <button type="submit" class="btn">Login</button>
             <div className="login-register">
-              <p>
-                Não tens uma conta?
-                <a href="#" className="register-link">
-                  {" "}
-                  Regista-te
-                </a>
-              </p>
+              <p>Não tens uma conta?<a href="#" className="register-link"> Regista-te</a></p>
             </div>
           </form>
         </div>
@@ -144,42 +128,26 @@ const CoimbraReporta = () => {
           <h2>Criar nova conta</h2>
           <form action="#" onSubmit={handleRegister}>
             <div className="input-box">
-              <span className="icon">
-                <ion-icon name="person"></ion-icon>
-              </span>
+              <span className="icon"><ion-icon name="person"></ion-icon></span>
               <input type="text" required />
               <label>Número de Cartão de Cidadão</label>
             </div>
             <div className="input-box">
-              <span className="icon">
-                <ion-icon name="mail"></ion-icon>
-              </span>
+              <span className="icon"><ion-icon name="mail"></ion-icon></span>
               <input type="email" required />
               <label>Email</label>
             </div>
             <div className="input-box">
-              <span className="icon">
-                <ion-icon name="lock-closed"></ion-icon>
-              </span>
+              <span className="icon"><ion-icon name="lock-closed"></ion-icon></span>
               <input type="password" required />
               <label>Password</label>
             </div>
             <div className="remember-forgot">
-              <label>
-                <input type="checkbox" />I agree to the terms & conditions
-              </label>
+              <label><input type="checkbox" />I agree to the terms & conditions</label>
             </div>
-            <button type="submit" class="btn">
-              Register
-            </button>
+            <button type="submit" class="btn">Register</button>
             <div className="login-register">
-              <p>
-                Já tens uma conta?
-                <a href="#" className="login-link">
-                  {" "}
-                  Iniciar Sessão
-                </a>
-              </p>
+              <p>Já tens uma conta?<a href="#" className="login-link"> Iniciar Sessão</a></p>
             </div>
           </form>
         </div>
