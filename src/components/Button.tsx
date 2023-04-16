@@ -1,11 +1,15 @@
+// Button.tsx
+import React from 'react';
+
 interface Props {
-  children: string;
+  children: React.ReactNode;
   onClick: () => void;
-  color?: "primary" | "secondary" | "success";
+  className?: string;
 }
-const Button = ({ children, onClick, color = "success" }: Props) => {
+
+const Button: React.FC<Props> = ({ children, className, onClick }) => {
   return (
-    <button className={"btn btn-" + color} onClick={onClick}>
+    <button className={className} onClick={onClick}>
       {children}
     </button>
   );

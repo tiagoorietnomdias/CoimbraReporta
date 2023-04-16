@@ -1,7 +1,7 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import L, { Icon } from "leaflet";
-import "../Styles/main.css";
+import "../Styles/styles.css";
 import { MapContainer, Marker, TileLayer, GeoJSON } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -74,10 +74,10 @@ const Map = () => {
           icon={customIcon}
         ></Marker>
       ))}
-      <div className="user-button" onClick={toggleDropdown}>
+       <div className="user-button" onClick={toggleDropdown}>
         U
       </div>
-      <div className={`user-dropdown ${dropdownVisible ? "visible" : ""}`}>
+      <div className={`user-dropdown ${dropdownVisible ? 'visible' : ''}`}>
         <div className="user-dropdown-item" onClick={handleInfo}>
           Informações
         </div>
@@ -88,10 +88,10 @@ const Map = () => {
           Logout
         </div>
       </div>
-      <div className="btn-add" onClick={handleQueixa}>
-        Reporte
-      </div>
-      {isReportModalOpen && (
+        <div className="btn-add" onClick={handleQueixa}>
+          Reporte
+        </div>
+        {isReportModalOpen && (
         <div className="modal" onClick={handleReportModal}>
           <div
             className="modal-content"
@@ -106,16 +106,15 @@ const Map = () => {
             <input type="text" placeholder="Escreva o título aqui" />
             <br />
             <h2>Descrição (opcional)</h2>
-            <textarea
-              rows={4}
-              placeholder="Escreva a descrição aqui"
-            ></textarea>
+            <textarea rows={4} placeholder="Escreva a descrição aqui"></textarea>
             <br />
             <h2>Fotografia</h2>
             <input type="file" accept="image/*" />
             <br />
-            <button onClick={() => {}}>Enviar</button>
-          </div>
+            <div className="submit-button-container">
+            <button className="submit-button" onClick={() => {}}>Enviar</button>
+            </div>
+            </div>
         </div>
       )}
     </MapContainer>
